@@ -24,4 +24,5 @@ export class HomeComponent implements OnInit {
       ngDoCheck(){
         this.identity = this._userService.getIdentity()
       }
+  
 }
