@@ -1,6 +1,6 @@
-export class Follow{
+export class Publication{
     constructor(
-     public _id :string,
+     public _id :String,
      public text :String,
      public file:String,
      public created_at:String,

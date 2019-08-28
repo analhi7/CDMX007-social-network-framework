@@ -1,0 +1,85 @@
+<div id="user-card" class="col-lg-4">
+
+
+
+    <div class="card mb-3 p-3" style="max-width: 540px;">
+       
+        <div class="row no-gutters">
+          <div class="col-md-4 avatar">
+              <img src="{{url + 'get-image-user/' +  identity.image}}" *ngIf = "identity && identity.name" alt="">
+              <img src="assets/user.png" *ngIf = "!identity.image" alt="">
+          </div>
+
+          <div>
+              <a href = "" class="card-title">{{identity.name + '' + identity.surname}}</a>
+              <p class="card-text"><small class="text-muted">{{identity.nick}}</small></p>          
+          </div>
+          <div class="col-md-8 stats" *ngIf="stats">
+            <div class="card-body">
+              <p class="card-text">
+              <a href="">
+                <span class="label-stats">
+                  Siguiendo:
+                </span>
+                <span class="number-stats">
+                  {{stats.following}}
+                </span>
+              </a>
+            </p>
+
+            
+              <p class="card-text">
+                  <a href="">
+                      <span class="label-stats">
+                        Seguidores:
+                      </span>
+                      <span class="number-stats">
+                        {{stats.followed}}
+                      </span>
+                    </a>
+              </p>
+
+              <p class="card-text">
+                  <a href="">
+                      <span class="label-stats">
+                       Publicaciones
+                      </span>
+                      <span class="number-stats">
+                        {{stats.publications}}
+                      </span>
+                    </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-3" id="new-publication">
+        <div class="card-header">Crear Publicación</div>
+        <div class="alert alert-success mx-3 mt-3" *ngIf="status == 'success'">
+          Publicación enviada correctamente
+        </div>
+        <div class="alert alert-danger mx-3 mt-3" *ngIf="status == 'error'">
+            Publicación no enviada 
+          </div>
+        <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm); sendPublication($event)" class="form-group p-3">
+            <p>
+              <label>¿Qué estas pensando hoy?</label>
+            </p>
+            <textarea  name="text " id="message" rows="3" #text="ngModel" [(ngModel)]="publication.text" class="form-control mb-2"  required></textarea>
+            <span *ngIf="!text.valid && text.touched">
+              El texto de la publicación es obligatorio
+            </span>
+
+            <p>
+              <input type="file" placeholder="Subir imagen">
+            </p>
+
+            <input type="submit" value="Enviar" name="" id="" class="btn btn-success" [disabled]="!newPubForm.form.valid">
+
+          </form>
+      </div>
+
+  
+ 
+</div>

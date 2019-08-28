@@ -1,4 +1,80 @@
 <main>
-<h1> {{title}}</h1>
+<h1 class="h1-strong"> {{title}}</h1>
+
+<app-sidebar></app-sidebar>
+
+<div class="list-group">
+
+    <div *ngFor = "let user of users"  class="list-group-item list-group-item-action">
+     <div class="panel panel-default">
+         <div class="card p-3">
+             <div class="image-user pull-left">
+            <a *ngIf= "user.image" href="">
+              <img  class = "img-profile" src="{{url + 'get-image-user/' + user.image}}"/>
+              
+            </a>
+
+            <a *ngIf= "!user.image" href="">
+                    <img class="img-default" src="assets/img/user.png"/>
+                    
+                  </a>
+
+             </div>
+             <div class="user_name pull-left">
+                   
+                <p>
+                <a [routerLink]= "['/perfil', user._id]">
+                     {{user.name + ' ' + user.surname}}
+    
+                 </a>
+                </p> 
+                <p class="nickname">{{user.nick}}</p>
+                
+    
+             </div>
+             <div class="justify-content-end" *ngIf="user._id != identity._id">
+                 <button class="btn btn-success mr-3" *ngIf="follows.indexOf(user._id) < 0"
+                 (click)="followUser(user._id)">
+                   Seguir
+                 </button>
+
+                 <button class="btn btn-primary" *ngIf="follows.indexOf(user._id) >= 0"
+                    (mouseenter) = "mouseEnter(user._id)"
+                    (mouseleave) = "mouseLeave(user._id)"
+                    (click) = "unfollowUser(user._id)"
+                    [class.btn-danger]= "user._id == followUserOver">
+
+                    <span *ngIf= "user._id == followUserOver; else following">
+                        Dejar de Seguir
+                    </span>
+
+                    <ng-template #following>
+                        
+                        <span>
+                          Siguiendo
+                        </span>
+                    </ng-template>
+                    
+                 </button>
+             </div>
+             
+         </div>
+     </div>
+    </div>
+
+    <div class="pr-4 pt-2">
+    <ul class="pagination pagination-sm justify-content-end">
+            
+            <li class="page-link"   *ngIf="page > 1"><a [routerLink]= "['/gente', prev_page]">Anterior</a></li>
+            <li class="page-link" *ngIf="pages != page "><a [routerLink]= "['/gente', next_page]">Siguiente</a></li>
+        
+        </ul>
+    </div>
+</div>
+
 
 </main>
+
+
+<div class="clearfix"></div>
+

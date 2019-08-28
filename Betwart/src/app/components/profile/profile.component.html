@@ -1,0 +1,93 @@
+<div class="col-lg-8">
+  <h1 class="h1-strong text-white">
+    {{title}}
+  </h1>
+</div>
+
+
+
+
+<div class="p-3" id="dataProfile" *ngIf="user">
+ <div class="card text-white bg-dark mb-5 p-2">
+   <div class="avatar-image-user">
+     <img src="{{ url + 'get-image-user/' + user.image}}" *ngIf="user.image"/>
+     <img src="../../../assets/img/user.png" alt="" *ngIf="!user.image">
+    
+   </div>
+   <div class="card-body">
+     <p class="card-text">{{user.name + ' ' + user.surname }}</p>
+     <p><small class="text-muted"> {{user.nick}}</small></p>
+     <p class="card-text" *ngIf = "user.description">Sobre mi:</p>
+     <p class="text-muted">{{user.description}}</p>
+
+     <div *ngIf="user._id != identity._id">
+     <div class="follow">
+
+        <div class="label label-dafault" *ngIf = "followed">
+            <span class="badge badge-light">Te sigue</span>
+        </div>
+    
+      </div>
+      <button class="btn btn-secondary btn-sm" *ngIf="!following" (click)="followUser(user._id)">
+        seguir
+      </button>
+    
+      <button class="btn btn-secondary btn-sm" *ngIf="following" 
+      (click)="unfollowUser(user._id)"
+      (mouseenter)= "mouseEnter(user._id)"
+      (mouseleave)= "mouseLeaver()"
+      [class.btn-danger]="user._id == followUserOver">
+
+      <span *ngIf="user._id == followUserOver; else following">
+          Dejar de seguir
+      </span>
+       <ng-template #following>
+         Siguiendo
+       </ng-template>  
+        </button>
+
+      </div>
+        <div class="mt-2" *ngIf="stats">
+            
+              <p class="card-text">
+              <a href="">
+                <span class="label-stats text-white">
+                  Siguiendo:
+                </span>
+                <span class="number-stats text-white">
+                  {{stats.following}}
+                </span>
+              </a>
+            </p>
+
+            
+              <p class="card-text">
+                  <a href="">
+                      <span class="label-stats text-white">
+                        Seguidores:
+                      </span>
+                      <span class="number-stats text-white">
+                        {{stats.followed}}
+                      </span>
+                    </a>
+              </p>
+
+              <p class="card-text">
+                  <a href="">
+                      <span class="label-stats text-white">
+                       Publicaciones
+                      </span>
+                      <span class="number-stats text-white">
+                        {{stats.publications}}
+                      </span>
+                    </a>
+              </p>
+            
+          </div>
+
+   </div>
+  
+ </div>
+</div>
+
+<app-sidebar></app-sidebar>

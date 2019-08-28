@@ -1,3 +1,8 @@
+.content-box{
+  margin-bottom:15%;
+}
+
+
 .container {
 
   margin: 20px;
@@ -40,7 +45,7 @@
   cursor: pointer;
 }
 
-.navigation .avatar {
+.avatar {
   width: 35px;
   height: 35px;
   border-radius: 100px;
@@ -49,8 +54,9 @@
   margin-right: 2px;
 }
 
-.navigation .avatar img{
+.avatar img{
   height: auto;
-  width: 38px;
+  width: 33px;
 
 }
+

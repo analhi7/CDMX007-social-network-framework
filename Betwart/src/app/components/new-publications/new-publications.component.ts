@@ -3,18 +3,15 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import {Publication} from '../models/publication';
 import { UserService } from '../services/user.service';
 import { PublicationService } from '../services/publications.service';
-
 import { GLOBAL } from '../services/global';
 
 @Component({
-  selector: 'app-publications',
-  templateUrl: './publications.component.html',
-  styleUrls: ['./publications.component.css'],
+  selector: 'app-new-publications',
+  templateUrl: './new-publications.component.html',
+  styleUrls: ['./new-publications.component.css'],
   providers : [UserService, PublicationService]
 })
-
-
-export class PublicationsComponent implements OnInit {
+export class NewPublicationsComponent implements OnInit {
 
   public identity;
   public token;
@@ -32,18 +29,17 @@ export class PublicationsComponent implements OnInit {
     private _router: Router,
     private _userService : UserService,
     private _publicationService : PublicationService
-
-  ) {
-    this.title = "Publicaciones"
+  ) { 
+    this.title = "Publicaciones "
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
     this.page = 1;
-  
-   }
+  }
 
   ngOnInit() {
-    console.log("Publications se ha cargado")
+
+    console.log("newPublications se ha cargado")
     this.getPublications(this.page);
   }
 
@@ -102,8 +98,4 @@ export class PublicationsComponent implements OnInit {
   
     }
 
-  refresh(event){
-    this.getPublications(1);
-  }
-    
 }

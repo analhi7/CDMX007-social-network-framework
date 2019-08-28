@@ -1,5 +1,47 @@
-<p>
-  publications works!
-</p>
+<div class="col-lg-8">
+
+<div class="identity">
+<app-sidebar (sended)="refresh($event)"></app-sidebar>
+</div>
+
+<div>
+        <button class="btn btn-success btn-sm ml-4 mb-3" (click)="refresh($event)">Mostrar nuevas</button>
+</div>
+
+<div class="publications">
+        <div *ngFor =  "let publication of publications" class="item-publication">
+            <div class="card mx-4 mb-3">
+                <div class="card-header">
+                    <p>{{publication.user.name + '' + publication.user.surname}}</p>
+                </div>
+                <div class="image-user">
+                        <img class = "img-profile"src="{{url + 'get-image-user/' +  publication.user.image}}" *ngIf = "publication.user.image" alt="">
+                        <img class = "img-profile" src="assets/user.png" *ngIf = "!publication.user.image" alt="">
+                    </div>
+                <div class="card-body">
+                    <h4 class="card-text">
+                        {{publication.text}}
+                    </h4>
+                </div>
+                <div class="card-footer">
+                   <p>
+                       <small class="text-muted"> {{(publication.created_at | amFromUnix) | amLocale:'es' | amTimeAgo}}  </small>
+                   
+                   </p> 
+                </div>
+            </div>
+     
+        </div>
+    
+    </div>
+    <div class="col-lg-12 pl-4 pb-3">
+            <button  class="btn btn-success "  (click)="viewMore(page)" *ngIf="!noMore">
+                    Ver más publicaciones
+                </button>
+    </div>
+    
+</div>
+
+
 
 <app-navbar></app-navbar>

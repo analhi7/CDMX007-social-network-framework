@@ -38,9 +38,13 @@
       ¡Email es obligatorio !
     </span>
   </p>
+
+  <p>
+    <textarea  name = "description" #description = "ngModel"[(ngModel)]="user.description" class="form-control" id="message" rows="3" placeholder="Escribe algo sobre ti"></textarea>
+  </p>
    
-  <div *ngIf= "user.image">
-    <img src="{{url +'get-image-user/'+ user.image}}"/>
+  <div  *ngIf= "user.image">
+    <img  class="preview" src="{{url +'get-image-user/'+ user.image}}"/>
   </div>
   <p>
     <label>Sube tu foto</label>

@@ -4,3 +4,34 @@ body{
    
 }
 
+.image-user{
+    width: 74px;
+    height: 75px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-right: 15px;
+
+}
+
+.image-user .img-profile {
+    width: 71px;
+  
+
+}
+
+.img-default{
+    width: 71px;
+}
+
+.avatar-image-user{
+    width: 125px;
+    height: 125px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.avatar-image-user img{
+    width: 100%;
+}
+
